@@ -1,6 +1,7 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { ListGroup } from "react-bootstrap";
 import InboxListItem from "./InboxListItem";
+import { UpdateList } from "../../store/Mail-thunk";
 
 import { useSelector } from "react-redux";
 const InboxList = () => {
