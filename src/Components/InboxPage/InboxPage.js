@@ -13,6 +13,7 @@ import { Outlet } from "react-router-dom";
 import { Link, Route, Routes } from "react-router-dom";
 import { UpdateList } from "../../store/Mail-thunk";
 import MessageView from "./MessageView";
+import SentMessage from "../SendMessage/SendMessage";
 
 
 let isinitialState = true;
@@ -54,6 +55,11 @@ const InboxPage = () => {
               <ListGroup.Item className="m-1" action>
               <Link to="#">sendMail</Link>
               </ListGroup.Item>
+              <Link to="sentmessage">
+                <ListGroup.Item className="m-1" action>
+                  sendMail
+                </ListGroup.Item>
+              </Link>
               <ListGroup.Item className="m-1" action>
                 DraftBox
               </ListGroup.Item>

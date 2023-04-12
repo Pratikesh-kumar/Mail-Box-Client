@@ -6,9 +6,12 @@ import { UpdateList } from "../../store/Mail-thunk";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { DeleteMail } from "../../store/Mail-thunk";
+import { MailSliceAction } from "../../store/MailSlice";
 
 const InboxListItem = (props) => {
   const Dispatch = useDispatch();
+  console.log('details/',props)
+
 
   let Readreceipt;
   if (!props.readreceipt) {
@@ -17,11 +20,11 @@ const InboxListItem = (props) => {
 
   const ListItemHandler = () => {
     if (props.readreceipt) {
+      Dispatch(MailSliceAction.addMessageViewinfo(props));
       return;
     }
     Dispatch(UpdateList(props));
-    // Dispatch(MailSliceAction.updataItems(props));
-    // console.log(props);
+    Dispatch(MailSliceAction.addMessageViewinfo(props));
   };
   const deleteHandler = () => {
     Dispatch(DeleteMail(props.id));

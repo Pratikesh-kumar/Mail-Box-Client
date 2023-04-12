@@ -1,12 +1,12 @@
 import React,{useEffect} from "react";
 import { ListGroup } from "react-bootstrap";
 import InboxListItem from "./InboxListItem";
-import { UpdateList } from "../../store/Mail-thunk";
+
 
 import { useSelector } from "react-redux";
 const InboxList = () => {
   const Items = useSelector((state) => state.mail.items);
-  //   console.log(Items);
+    console.log(Items);
 
   return (
     <>
@@ -15,9 +15,10 @@ const InboxList = () => {
           <InboxListItem
             email={item.email}
             key={item.id}
-            message={item.subject}
+            subject={item.subject}
             text={item.text}
-            id={item.id}
+            id={item.id} 
+            From={item.From}
           ></InboxListItem>
         ))}
       </ListGroup>
