@@ -1,16 +1,10 @@
 import { AuthsliceAction } from "./Auth";
-const Navigate = () => {
-  
-  console.log("navi");
-
-};
 
 const loginURL =
   "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDB1MT0G7F1tJ6fr81fLMNyQfJMMc88rE8";
 const signupUrl =
   "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDB1MT0G7F1tJ6fr81fLMNyQfJMMc88rE8";
-const RestUrl =
-  "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDB1MT0G7F1tJ6fr81fLMNyQfJMMc88rE8";
+
 export const sendsignup = (obj) => {
   return async (dispatch) => {
     const sendingAuth = async () => {
@@ -19,6 +13,7 @@ export const sendsignup = (obj) => {
         body: JSON.stringify(obj),
         headers: {
           "Content-Type": "application/json",
+          
         },
       });
 
@@ -61,9 +56,11 @@ export const Sendlogin = (obj) => {
     try {
       const data = await sendingloginAuth();
       const id = await data.idToken;
+
       localStorage.setItem("id", data.idToken);
       localStorage.setItem("islogin", "true");
       localStorage.setItem("mailid", obj.email);
+
       //  console.log(id);
       dispatch(AuthsliceAction.Login(id));
     } catch (error) {

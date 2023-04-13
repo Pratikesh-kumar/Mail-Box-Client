@@ -2,7 +2,7 @@
     width: 5%;
     border-radius: 20px;
   }
-
+  
   .navbar {
     border-color: bisque;
   }
@@ -19,7 +19,6 @@
     position: relative;
     top: 50%;
   }
-  
   .indbox-cont {
     display: flex;
     justify-content: space-around;
@@ -27,4 +26,19 @@
   }
   .indbox-cont h5 {
     color: rgb(13, 26, 145);
+  }
+  
+  .thum-img2 {
+    width: 20%;
+    max-height: 10vh;
+  }
+  
+  .bk-inbox {
+    /* background-image: linear-gradient(
+      to right,
+      #ff00b7 0%,
+      #031941 30%,
+      #27021d 100%
+    ); */
+    background-color: rgb(235, 216, 253);
   }

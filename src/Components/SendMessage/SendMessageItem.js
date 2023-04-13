@@ -1,20 +1,14 @@
 import React from "react";
 import { Col, Container, ListGroup, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { MailSliceAction } from "../../store/MailSlice";
-// import { UpdateList } from "../../Store/Mail-thunk";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
-
-// import { DeleteMail } from "../../Store/Mail-thunk";
 import { Link } from "react-router-dom";
+import { MymailSliceAction } from "../../Store/MymailSlice";
 
-import { MymailSliceAction } from "../../store/MymailSlice";
-
-const SentMessageItem = (props) => {
+const SentMessageListItem = (props) => {
+  const sentItems = useSelector((state) => state.mymail.sentItem);
   const Dispatch = useDispatch();
-  // console.log(props);
-  //   console.log(Items);
-  console.log("deatails/", props);
+
   let Readreceipt;
   if (!props.readreceipt) {
     Readreceipt = "readreceipt";
@@ -22,27 +16,24 @@ const SentMessageItem = (props) => {
   const ListItemHandler = () => {
     // console.log("sendmeeage page", props);
     Dispatch(MymailSliceAction.addMessageViewinfo(props));
-    // if (props.readreceipt) {
-    // Dispatch(MailSliceAction.addMessageViewinfo(props));
-    //   return;
-    // }
-    // Dispatch(UpdateList(props));
-    // Dispatch(MailSliceAction.addMessageViewinfo(props));
-    // Dispatch(MailSliceAction.updataItems(props));
-    // console.log(props);
   };
   const deleteHandler = () => {
-    console.log("sendmeeage page");
-    // Dispatch(DeleteMail(props.id));
-    // console.log(props.id);
+    console.log("delete");
+    let oldarry = sentItems;
+    if (oldarry.length !== 1) {
+      let sentItem = oldarry.filter((item) => item.id !== props.id);
+      Dispatch(MymailSliceAction.updateSendItem(sentItem));
+    } else {
+      Dispatch(MymailSliceAction.updateSendItem([]));
+    }
   };
   return (
     <>
       <ListGroup.Item
         id={props.id}
         className="m-.3 "
-        variant="primary"
         key={props.id}
+        variant="success"
       >
         <Container>
           <Row>
@@ -63,4 +54,4 @@ const SentMessageItem = (props) => {
     </>
   );
 };
-export default SentMessageItem;
+export default SentMessageListItem;
